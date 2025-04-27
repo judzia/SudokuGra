@@ -61,6 +61,12 @@ build CMakeFiles/SudokuGra.dir/sudoku.c.obj: C_COMPILER__SudokuGra_unscanned_Deb
   OBJECT_DIR = CMakeFiles\SudokuGra.dir
   OBJECT_FILE_DIR = CMakeFiles\SudokuGra.dir
 
+build CMakeFiles/SudokuGra.dir/save_load.c.obj: C_COMPILER__SudokuGra_unscanned_Debug C$:/Users/PC/Desktop/SudokuGra/save_load.c || cmake_object_order_depends_target_SudokuGra
+  DEP_FILE = CMakeFiles\SudokuGra.dir\save_load.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\SudokuGra.dir
+  OBJECT_FILE_DIR = CMakeFiles\SudokuGra.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target SudokuGra
@@ -69,7 +75,7 @@ build CMakeFiles/SudokuGra.dir/sudoku.c.obj: C_COMPILER__SudokuGra_unscanned_Deb
 #############################################
 # Link the executable SudokuGra.exe
 
-build SudokuGra.exe: C_EXECUTABLE_LINKER__SudokuGra_Debug CMakeFiles/SudokuGra.dir/main.c.obj CMakeFiles/SudokuGra.dir/sudoku.c.obj
+build SudokuGra.exe: C_EXECUTABLE_LINKER__SudokuGra_Debug CMakeFiles/SudokuGra.dir/main.c.obj CMakeFiles/SudokuGra.dir/sudoku.c.obj CMakeFiles/SudokuGra.dir/save_load.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\SudokuGra.dir

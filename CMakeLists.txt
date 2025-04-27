@@ -5,4 +5,5 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(SudokuGra
         main.c
-        sudoku.c)
+        sudoku.c
+        save_load.c)
