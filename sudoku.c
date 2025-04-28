@@ -167,7 +167,7 @@ int solve_sudoku(SudokuGame* game, int row, int col) {
     return 0;
 }
 
-// funkcja (na razie puste) odpowiedzialna za generowanie kompletnej planszy sudoku
+// funkcja odpowiedzialna za generowanie kompletnej planszy sudoku
 void generate_full_board(SudokuGame* game) {
     solve_sudoku(game, 0, 0); // wywoluje solve od poczatku planszy
 }
@@ -211,14 +211,18 @@ void remove_numbers(SudokuGame* game, int difficulty) {
 
 int make_move(SudokuGame* game, int row, int col, int num) {
     if (game->fixed[row][col]) {
-        printf("Nie mozesz zmieniac tej liczby!\n");
+        printf("You cannot change this number!\n");
         return 0;
     }
+
+    int old = game->board[row][col]; // zapamietaj stary numer
+    game->board[row][col] = 0;       // tymczasowo wyczysc
+
     if (is_safe(game, row, col, num)) {
-        game->board[row][col] = num;
+        game->board[row][col] = num;  // ustaw nowy numer
         return 1;
     } else {
-        printf("Nieprawidlowy ruch!\n");
+        game->board[row][col] = old;  // przywroc stary numer
         return 0;
     }
 }
@@ -272,29 +276,29 @@ void play_game(SudokuGame* game) {
     int row, col, num;
 
     while (1) {
-        printf("\nTwoja plansza:\n");
+        printf("\nYOUR BOARD:\n");
         print_board(game);
 
         if (is_game_complete(game)) { // sprawdzenie, czy gra zakończona
-            printf("\nGratulacje! Ukonczyles Sudoku!\n");
+            printf("\nCongratulations! You won! (YIPIEEEEEEEEEE! :3)\n");
             break;
         }
 
-        printf("Wykonaj ruch (wiersz kolumna liczba) lub wpisz -1 aby wyjsc: ");
+        printf("Make a move (row column number) or enter -1 to exit: ");
 
         if (scanf("%d", &row) != 1) {
-            printf("Nieprawidlowe dane.\n");
+            printf("Invalid input.\n");
             while (getchar() != '\n');
             continue;
         }
 
         if (row == -1) {
-            printf("Powrot do menu glownego.\n");
+            printf("Returning to the main menu.\n");
             break;
         }
 
         if (scanf("%d %d", &col, &num) != 2) {
-            printf("Nieprawidlowe dane.\n");
+            printf("Invalid input.\n");
             while (getchar() != '\n');
             continue;
         }
@@ -302,11 +306,13 @@ void play_game(SudokuGame* game) {
         row--; // dostosowanie do indeksu 0
         col--; // dostosowanie do indeksu 0
 
-        if (row >= 0 && row < game->size && col >= 0 && col < game->size && num >= 1 && num <= game->size) {
-            make_move(game, row, col, num);
-            printf("Dobry ruch!\n");
-        } else {
-            printf("Nieprawidlowe dane. Sprobuj ponownie.\n");
+        if (row >= 0 && row < game->size && col >= 0 && col < game->size && num >= 1 && num <= game->size)
+        {
+            if (make_move(game, row, col, num)) {
+                printf("Good move!\n");
+            } else {
+                printf("Wrong move!\n");
+            }
         }
     }
 }

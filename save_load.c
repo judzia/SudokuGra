@@ -6,7 +6,7 @@
 void save_game(SudokuGame *game, const char *filename) {
     FILE *file = fopen(filename, "w");
     if (!file) {
-        printf("Nie mozna otworzyc pliku do zapisu!\n");
+        printf("Cannot open file for writing!\n");
         return;
     }
 
@@ -27,14 +27,14 @@ void save_game(SudokuGame *game, const char *filename) {
     }
 
     fclose(file);
-    printf("Gra zostala zapisana!\n");
+    printf("Game has been saved!\n");
 }
 
 // Wczytuje stan gry z pliku
 SudokuGame* load_game(const char *filename) {
     FILE *file = fopen(filename, "r");
     if (!file) {
-        printf("Nie mozna otworzyc pliku do odczytu!\n");
+        printf("Cannot open file for reading!\n");
         return NULL;
     }
 
@@ -58,6 +58,6 @@ SudokuGame* load_game(const char *filename) {
     }
 
     fclose(file);
-    printf("Gra zostala wczytana!\n");
+    printf("Game has been loaded!\n");
     return game;
 }

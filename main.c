@@ -10,37 +10,35 @@
 
 //funkcja pomocnicza do wyswietlania menu ladnie
 void print_menu() {
-    printf("\n======= MENU GLOWNE =======\n");
-    printf("1. Nowa gra\n");
-    printf("2. Zapisz gre\n");
-    printf("3. Wczytaj gre\n");
-    printf("4. Instrukcja\n");
-    printf("5. Wyjscie\n");
+    printf("\n======= MAIN MENU =======\n");
+    printf("1. New Game\n");
+    printf("2. Save Game\n");
+    printf("3. Load Game\n");
+    printf("4. Instructions\n");
+    printf("5. Exit\n");
     printf("===========================\n");
-    printf("Wybierz opcje: ");
+    printf("Choose an option: ");
 }
 
 //funckja do wyswietlania instrukcji
 void print_instructions() {
-    printf("\n==== INSTRUKCJA GRY SUDOKU ====\n");
-    printf("Twoim celem jest wypelnienie calej planszy cyframi,\n");
-    printf("tak aby kazda cyfra wystepowala dokladnie raz\n");
-    printf("w kazdym wierszu, kolumnie i malym kwadracie.\n\n");
+    printf("\n==== SUDOKU GAME INSTRUCTIONS ====\n");
+    printf("Your goal is to fill the entire board with numbers\n");
+    printf("so that each number appears exactly once\n");
+    printf("in each row, column, and small box.\n\n");
 
-    printf("Jak grac:\n");
-    printf("- Najpierw wybierz rozmiar planszy (4x4, 9x9 lub 16x16).\n");
-    printf("- Nastepnie wybierz poziom trudnosci.\n");
-    printf("- Podczas gry podajesz numer wiersza, kolumny i wartosc,\n");
-    printf("  ktora chcesz wprowadzic.\n");
-    printf("- Mozesz usuwac swoje ruchy (podajac 0 jako wartosc).\n");
-    printf("- Mozesz zapisac i pozniej wczytac gre.\n\n");
+    printf("How to play:\n");
+    printf("- First, choose the board size (4x4, 9x9, or 16x16).\n");
+    printf("- Then, select the difficulty level.\n");
+    printf("- During the game, enter the row number, column number,\n");
+    printf("   and the value you want to place.\n");
+    printf("- You can save the game and load it later.\n\n");
 
-    printf("Dodatkowe informacje:\n");
-    printf("- Plansze sa generowane tak, by mialy zawsze jedno rozwiazanie.\n");
-    printf("- Badz ostrozny! Program sprawdza poprawnosc Twoich ruchow.\n");
-    printf("- Jesli utkniesz, mozesz poprosic o podpowiedz (opcjonalnie).\n");
+    printf("Additional information:\n");
+    printf("- Boards are generated to always have exactly one solution.\n");
+    printf("- Be careful! The program checks the correctness of your moves.\n");
 
-    printf("\nPowodzenia i milej zabawy! :)\n");
+    printf("\nGood luck and have fun! :)\n");
     printf("===============================\n\n");
 }
 
@@ -57,9 +55,9 @@ int main() {
         {
         case 1: {
                 int size, difficulty; // rozmiar planszy i poziom trudnosci
-                printf("Wybierz rozmiar planszy (4, 9, 16): ");
+                printf("Choose board size (4, 9, 16): ");
                 if (scanf("%d", &size) != 1 || (size != 4 && size != 9 && size != 16)) {
-                    printf("Nieprawidlowy rozmiar planszy.\n");
+                    printf("Invalid board size.\n");
                     while (getchar() != '\n');
                     break;
                 }
@@ -72,9 +70,9 @@ int main() {
                 generate_full_board(game);
 
                 // pobieramy poziom trudnosci
-                printf("Wybierz poziom trudnosci (1=latwy, 2=sredni, 3=trudny): ");
+                printf("Choose difficulty level (1=Easy, 2=Medium, 3=Hard): ");
                 if (scanf("%d", &difficulty) != 1 || (difficulty < 1 || difficulty > 3)) {
-                    printf("Nieprawidlowy poziom trudnosci.\n");
+                    printf("Invalid difficulty level.\n");
                     free_game(game);
                     game = NULL;
                     while (getchar() != '\n');
@@ -88,7 +86,7 @@ int main() {
         }
         case 2:// ZAPISZ GRE
             if (game == NULL) {
-                printf("Brak gry do zapisania.\n");
+                printf("No game to save.\n");
             } else {
                 save_game(game, "sudoku_save.txt");
             }
@@ -101,17 +99,17 @@ int main() {
             if (game != NULL) {
                 play_game(game);
             } else {
-                printf("Blad podczas wczytywania gry.\n");
+                printf("Error loading game.\n");
             }
             break;
         case 4:
             print_instructions();
             break;
         case 5:// WYJSCIE
-            printf("Do zobaczenia!\n");
+            printf("See you next time!\n");
             break;
         default:
-            printf("Nieprawidlowa opcja. Sprobuj ponownie.\n");
+            printf("Invalid option. Please try again.\n");
         }
 
     } while (opcja != 5); //powtarzamy dopoki uzytwkonik nie wybierze
